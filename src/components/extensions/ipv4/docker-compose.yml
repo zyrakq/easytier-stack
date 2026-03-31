@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_IPV4: ${ET_IPV4:-10.144.144.1}

@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_EXIT_NODES: ${ET_EXIT_NODES:-10.144.144.1}

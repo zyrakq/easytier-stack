@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_ENABLE_EXIT_NODE: ${ET_ENABLE_EXIT_NODE:-true}

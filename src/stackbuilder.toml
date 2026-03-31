@@ -1,0 +1,23 @@
+[paths]
+extensions_dirs = ["extensions"]
+
+[build]
+skip_base_generation =true
+extensions = ["ipv4", "private-mode", "enable-exit-node", "exit-nodes", "peer", "point-to-network"]
+
+[build.combos]
+"server-node" = ["ipv4", "private-mode"]
+"producer-node" = ["ipv4", "peer", "point-to-network"]
+"consumer-node" = ["ipv4", "peer"]
+
+[build.environments]
+available = ["server", "producer", "consumer"]
+
+[build.environments.server]
+combos = ["server-node"]
+
+[build.environments.producer]
+combos = ["producer-node"]
+
+[build.environments.consumer]
+combos = ["consumer-node"]

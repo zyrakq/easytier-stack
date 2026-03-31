@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_PRIVATE_MODE: ${ET_PRIVATE_MODE:-true}

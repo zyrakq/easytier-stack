@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_PROXY_NETWORKS: ${ET_PROXY_NETWORKS:-10.24.24.0/24}
