@@ -3,21 +3,32 @@ extensions_dirs = ["extensions"]
 
 [build]
 skip_base_generation =true
-extensions = ["ipv4", "private-mode", "enable-exit-node", "exit-nodes", "peer", "point-to-network"]
+extensions = [
+    "ipv4",
+    "private-mode",
+    "stun",
+    "peer",
+    "point-to-network",
+    "enable-exit-node",
+    "exit-nodes"
+]
 
 [build.combos]
-"server-node" = ["ipv4", "private-mode"]
-"producer-node" = ["ipv4", "peer", "point-to-network"]
-"consumer-node" = ["ipv4", "peer"]
+"server-node" = ["ipv4", "private-mode", "stun"]
+"producer-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network"]
+"consumer-node" = ["ipv4", "private-mode", "peer", "stun"]
+"exit-server-node" = ["ipv4", "private-mode", "stun", "enable-exit-node"]
+"exit-producer-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network", "exit-nodes"]
+"exit-consumer-node" = ["ipv4", "private-mode", "peer", "stun", "exit-nodes"]
 
 [build.environments]
 available = ["server", "producer", "consumer"]
 
 [build.environments.server]
-combos = ["server-node"]
+combos = ["server-node", "exit-server-node"]
 
 [build.environments.producer]
-combos = ["producer-node"]
+combos = ["producer-node", "exit-producer-node"]
 
 [build.environments.consumer]
-combos = ["consumer-node"]
+combos = ["consumer-node", "exit-consumer-node"]

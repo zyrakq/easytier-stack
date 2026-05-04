@@ -1,0 +1,30 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "${LOG_MAX_SIZE:-10m}"
+    max-file: "${LOG_MAX_FILE:-3}"
+    compress: "${LOG_COMPRESS:-true}"
+services:
+  easytier:
+    image: ${IMAGE:-easytier/easytier:latest}
+    container_name: easytier
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: ${TZ:-Europe/Moscow}
+      ET_NETWORK_NAME: ${ET_NETWORK_NAME:-easytier}
+      ET_NETWORK_SECRET: ${ET_NETWORK_SECRET:-easytier}
+      ET_IPV4: ${ET_IPV4:-10.144.144.1}
+      ET_PRIVATE_MODE: ${ET_PRIVATE_MODE:-true}
+      ET_STUN_SERVERS: ${ET_STUN_SERVERS}
+      ET_STUN_SERVERS_V6: ${ET_STUN_SERVERS_V6}
+      ET_ENABLE_EXIT_NODE: ${ET_ENABLE_EXIT_NODE:-true}
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - /etc/easytier:/root
+      - /etc/machine-id:/etc/machine-id:ro
+    logging: *default-logging

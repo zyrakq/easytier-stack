@@ -1,0 +1,5 @@
+services:
+  easytier:
+    environment:
+      ET_STUN_SERVERS: ${ET_STUN_SERVERS}
+      ET_STUN_SERVERS_V6: ${ET_STUN_SERVERS_V6}
