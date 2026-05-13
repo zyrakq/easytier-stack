@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_SOCKS5: ${ET_SOCKS5:-1080}
