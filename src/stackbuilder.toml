@@ -8,6 +8,7 @@ extensions = [
     "private-mode",
     "stun",
     "peer",
+    "socks5",
     "point-to-network",
     "enable-exit-node",
     "exit-nodes"
@@ -15,20 +16,23 @@ extensions = [
 
 [build.combos]
 "server-node" = ["ipv4", "private-mode", "stun"]
-"producer-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network"]
-"consumer-node" = ["ipv4", "private-mode", "peer", "stun"]
+"server-socks5-node" = ["ipv4", "private-mode", "stun", "socks5"]
+"p2p-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network"]
+"client-node" = ["ipv4", "private-mode", "peer", "stun"]
+"socks5-node" = ["ipv4", "private-mode", "peer", "stun", "socks5"]
 "exit-server-node" = ["ipv4", "private-mode", "stun", "enable-exit-node"]
-"exit-producer-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network", "exit-nodes"]
-"exit-consumer-node" = ["ipv4", "private-mode", "peer", "stun", "exit-nodes"]
+"exit-p2p-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network", "exit-nodes"]
+"exit-client-node" = ["ipv4", "private-mode", "peer", "stun", "exit-nodes"]
 
 [build.environments]
 available = ["server", "producer", "consumer"]
 
 [build.environments.server]
-combos = ["server-node", "exit-server-node"]
+combos = ["server-node", "server-socks5-node", "exit-server-node"]
 
 [build.environments.producer]
-combos = ["producer-node", "exit-producer-node"]
+combos = ["p2p-node", "exit-p2p-node", "socks5-node"]
 
 [build.environments.consumer]
-combos = ["consumer-node", "exit-consumer-node"]
+combos = ["client-node", "exit-client-node"]
+

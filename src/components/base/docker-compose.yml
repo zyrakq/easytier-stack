@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     network_mode: host
     environment:
-      TZ: ${TZ:-Europe/Moscow}
+      TZ: ${TZ:-Etc/UTC}
       ET_NETWORK_NAME: ${ET_NETWORK_NAME:-easytier}
       ET_NETWORK_SECRET: ${ET_NETWORK_SECRET:-easytier}
     cap_add:
