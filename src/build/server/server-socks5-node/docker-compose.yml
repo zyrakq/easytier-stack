@@ -1,21 +1,25 @@
 x-logging: &default-logging
-  driver: "json-file"
+  driver: json-file
   options:
-    max-size: "${LOG_MAX_SIZE:-10m}"
-    max-file: "${LOG_MAX_FILE:-3}"
-    compress: "${LOG_COMPRESS:-true}"
+    max-size: ${LOG_MAX_SIZE:-10m}
+    max-file: ${LOG_MAX_FILE:-3}
+    compress: ${LOG_COMPRESS:-true}
 services:
   easytier:
     image: ${IMAGE:-easytier/easytier:latest}
-    container_name: easytier
+    container_name: ${CONTAINER_NAME:-easytier}
     restart: unless-stopped
     network_mode: host
     environment:
       TZ: ${TZ:-Etc/UTC}
       ET_NETWORK_NAME: ${ET_NETWORK_NAME:-easytier}
       ET_NETWORK_SECRET: ${ET_NETWORK_SECRET:-easytier}
-      ET_IPV4: ${ET_IPV4:-10.144.144.1}
+      ET_RPC_PORTAL: ${ET_RPC_PORTAL:-0}
+      ET_LISTENERS: ${ET_LISTENERS:-11010}
+      ET_DEFAULT_PROTOCOL: ${ET_DEFAULT_PROTOCOL:-wss}
       ET_PRIVATE_MODE: ${ET_PRIVATE_MODE:-true}
+      ET_ENABLE_EXIT_NODE: ${ET_ENABLE_EXIT_NODE:-false}
+      ET_IPV4: ${ET_IPV4:-10.144.144.1}
       ET_STUN_SERVERS: ${ET_STUN_SERVERS}
       ET_STUN_SERVERS_V6: ${ET_STUN_SERVERS_V6}
       ET_SOCKS5: ${ET_SOCKS5:-1080}

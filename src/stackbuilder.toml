@@ -3,36 +3,33 @@ extensions_dirs = ["extensions"]
 
 [build]
 skip_base_generation =true
+env_file_patterns = [".env", ".env.easyvpn"]
 extensions = [
     "ipv4",
-    "private-mode",
     "stun",
     "peer",
     "socks5",
-    "point-to-network",
-    "enable-exit-node",
-    "exit-nodes"
+    "point-to-network"
 ]
 
 [build.combos]
-"server-node" = ["ipv4", "private-mode", "stun"]
-"server-socks5-node" = ["ipv4", "private-mode", "stun", "socks5"]
-"p2p-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network"]
-"client-node" = ["ipv4", "private-mode", "peer", "stun"]
-"socks5-node" = ["ipv4", "private-mode", "peer", "stun", "socks5"]
-"exit-server-node" = ["ipv4", "private-mode", "stun", "enable-exit-node"]
-"exit-p2p-node" = ["ipv4", "private-mode", "peer", "stun", "point-to-network", "exit-nodes"]
-"exit-client-node" = ["ipv4", "private-mode", "peer", "stun", "exit-nodes"]
+"server-node" = ["ipv4", "stun"]
+"server-socks5-node" = ["ipv4", "stun", "socks5"]
+
+"p2p-node" = ["ipv4", "peer", "stun", "point-to-network"]
+
+"client-node" = ["ipv4", "peer", "stun"]
+"client-socks5-node" = ["ipv4", "peer", "stun", "socks5"]
 
 [build.environments]
 available = ["server", "producer", "consumer"]
 
 [build.environments.server]
-combos = ["server-node", "server-socks5-node", "exit-server-node"]
+combos = ["server-node", "server-socks5-node"]
 
 [build.environments.producer]
-combos = ["p2p-node", "exit-p2p-node", "socks5-node"]
+combos = ["p2p-node"]
 
 [build.environments.consumer]
-combos = ["client-node", "exit-client-node"]
+combos = ["client-node", "client-socks5-node"]
 
