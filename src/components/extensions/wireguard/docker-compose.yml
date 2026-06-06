@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_VPN_PORTAL: ${ET_VPN_PORTAL:-wg://0.0.0.0:11013/10.14.14.0/24}

@@ -1,0 +1,4 @@
+services:
+  easytier:
+    environment:
+      ET_PORT_FORWARD: ${ET_PORT_FORWARD}
