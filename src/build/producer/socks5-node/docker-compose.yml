@@ -12,6 +12,7 @@ services:
     network_mode: host
     environment:
       TZ: ${TZ:-Etc/UTC}
+      ET_DEV_NAME: ${ET_DEV_NAME:-tun0}
       ET_NETWORK_NAME: ${ET_NETWORK_NAME:-easytier}
       ET_NETWORK_SECRET: ${ET_NETWORK_SECRET:-easytier}
       ET_RPC_PORTAL: ${ET_RPC_PORTAL:-0}
